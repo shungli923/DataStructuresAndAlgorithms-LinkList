@@ -74,7 +74,7 @@ void DestoryLinkList(LinkList *head) {
 }
 
 /*
- 单链表指定节点数之前插入新的元素
+ 单链表指定节点数之前插入新的元素: a前面插入c
  */
 void InsterLinkList(LinkList *head, char a, char c) {
     
