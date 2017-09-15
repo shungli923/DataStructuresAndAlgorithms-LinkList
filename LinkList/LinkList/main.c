@@ -132,7 +132,19 @@ void DeleteLinkList(LinkList *head, char a) {
 /*
  求单链表的长度
  */
-
+int LengthLinkList(LinkList *head) {
+    
+    LinkList *p = head;
+    int length = 0;
+    
+    while (p->next) {
+        
+        length++;
+        p = p->next;
+    }
+    
+    return length;
+}
 
 /*
  判断单链表是否为空
@@ -150,24 +162,55 @@ void EmptyLinkList(LinkList *head) {
     }
 }
 
+/*
+ 单链表反转
+ */
+
+LinkList* ReverseLinkList(LinkList *head) {
+    
+    LinkList *p, *q, *r;
+    
+    p = head;
+    q = p->next;
+    
+    while (q) {
+        
+        r = q->next;
+        
+        q->next = p == head ? NULL : p; // 如果是head下一个节点，则反转后其为最后一个节点，next 为NULL
+        
+        p = q;
+        q = r;  // 千万别 q = q->next;
+    }
+    
+    head->next = p;
+    
+    return head;
+}
+
 int main(int argc, const char * argv[]) {
     
     char a[5] = {'a','c','d','e','f'};
     LinkList *list = CreateLinkList(a, 5);
     PrintfLinkList(list);
-    EmptyLinkList(list);
-    InsterLinkList(list, 'c', 'b');
-    PrintfLinkList(list);
-    EmptyLinkList(list);
-//    DestoryLinkList(list);
+    LinkList *reverseList = ReverseLinkList(list);
+    PrintfLinkList(reverseList);
+//    EmptyLinkList(list);
+//    InsterLinkList(list, 'c', 'b');
 //    PrintfLinkList(list);
 //    EmptyLinkList(list);
-    DeleteLinkList(list, 'c');
-    PrintfLinkList(list);
-    EmptyLinkList(list);
-    DeleteLinkList(list, 'f');
-    PrintfLinkList(list);
-    EmptyLinkList(list);
+////    DestoryLinkList(list);
+////    PrintfLinkList(list);
+////    EmptyLinkList(list);
+//    DeleteLinkList(list, 'c');
+//    PrintfLinkList(list);
+//    EmptyLinkList(list);
+//    DeleteLinkList(list, 'f');
+//    PrintfLinkList(list);
+//    EmptyLinkList(list);
+//    
+//    int length = LengthLinkList(list);
+//    printf("LinkList length is %d\n",length);
     
     return 0;
 }
