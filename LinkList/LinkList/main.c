@@ -67,9 +67,9 @@ void DestoryLinkList(LinkList *head) {
     
     p = head;
     while (p) {
-        q = p->next;
+        q = p->next; // q 后移
         free(p);
-        p = q;
+        p = q; // p 指向 q
     }
 }
 
@@ -83,16 +83,18 @@ void InsterLinkList(LinkList *head, char a, char c) {
     
     while (p->next) {
         
+        // 判断 p 下一个节点数据是否为 a 数据
         if (p->next->data == a) {
             break;
         }
         p = p->next;
     }
     
+    // break 后 创建新节点 q
     q = (LinkList *)malloc(sizeof(LinkList));
     q->data = c;
-    q->next = p->next;
-    p->next = q;
+    q->next = p->next;  // 将 q->next 为原先 p->next
+    p->next = q; // 然后 p->next 指向 q
 }
 
 /*
@@ -106,7 +108,7 @@ void DeleteLinkList(LinkList *head, char a) {
         
         if (q->data == a) {
             
-            p->next = q->next;
+            p->next = q->next; // 将 p->next 指向 q->next;
             free(q);
             
             break;
